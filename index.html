@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vishal Kumar Sharma - Application Manager</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(15, 15, 35, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #64ffda, #00bcd4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .nav-links a:hover {
+            color: #64ffda;
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            background: radial-gradient(circle at 50% 50%, rgba(100, 255, 218, 0.1) 0%, transparent 70%);
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #64ffda, #00bcd4, #03a9f4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-content .subtitle {
+            font-size: 1.5rem;
+            color: #b0bec5;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .hero-content .description {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            line-height: 1.6;
+            color: #90a4ae;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .btn {
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 30px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #64ffda, #00bcd4);
+            color: #0f0f23;
+            font-weight: bold;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #64ffda;
+            border: 2px solid #64ffda;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(100, 255, 218, 0.3);
+        }
+
+        .floating-icons {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .floating-icon {
+            position: absolute;
+            font-size: 2rem;
+            color: rgba(100, 255, 218, 0.1);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            background: linear-gradient(45deg, #64ffda, #00bcd4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .skill-category {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            border-color: rgba(100, 255, 218, 0.3);
+        }
+
+        .skill-category h3 {
+            color: #64ffda;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .tech-logos {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .tech-logo {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .tech-logo:hover {
+            background: rgba(100, 255, 218, 0.2);
+            border-color: #64ffda;
+            transform: scale(1.05);
+        }
+
+        .experience-timeline {
+            position: relative;
+            margin: 2rem 0;
+        }
+
+        .timeline-line {
+            position: absolute;
+            left: 2rem;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, #64ffda, #00bcd4);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-left: 5rem;
+            margin-bottom: 3rem;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 3px solid #64ffda;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -4rem;
+            top: 2rem;
+            width: 1rem;
+            height: 1rem;
+            background: #64ffda;
+            border-radius: 50%;
+            border: 3px solid #0f0f23;
+        }
+
+        .job-title {
+            color: #64ffda;
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .company {
+            color: #b0bec5;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .duration {
+            color: #90a4ae;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .achievements {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .achievement-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .achievement-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(100, 255, 218, 0.3);
+        }
+
+        .achievement-icon {
+            font-size: 3rem;
+            color: #64ffda;
+            margin-bottom: 1rem;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-5px);
+            border-color: #64ffda;
+            background: rgba(100, 255, 218, 0.1);
+        }
+
+        .contact-icon {
+            font-size: 2rem;
+            color: #64ffda;
+            margin-bottom: 1rem;
+        }
+
+        .education-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            border-left: 3px solid #64ffda;
+        }
+
+        .degree {
+            color: #64ffda;
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .scroll-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.1);
+            z-index: 1001;
+        }
+
+        .scroll-progress {
+            height: 100%;
+            background: linear-gradient(90deg, #64ffda, #00bcd4);
+            width: 0%;
+            transition: width 0.1s ease;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #64ffda;
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0.7;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-20px) rotate(120deg); }
+            66% { transform: translateY(10px) rotate(240deg); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        .mobile-menu {
+            display: none;
+            color: #64ffda;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .mobile-menu {
+                display: block;
+            }
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            .timeline-item {
+                margin-left: 2rem;
+            }
+            .timeline-line {
+                left: 1rem;
+            }
+            .timeline-dot {
+                left: 0.5rem;
+            }
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: #64ffda;
+            background: rgba(100, 255, 218, 0.1);
+        }
+
+        .project-title {
+            color: #64ffda;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .project-domain {
+            background: linear-gradient(45deg, #64ffda, #00bcd4);
+            color: #0f0f23;
+            padding: 0.3rem 1rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .stats-section {
+            background: rgba(255, 255, 255, 0.02);
+            padding: 3rem 2rem;
+            margin: 2rem 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #64ffda;
+            display: block;
+        }
+
+        .stat-label {
+            color: #b0bec5;
+            margin-top: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="scroll-indicator">
+        <div class="scroll-progress" id="scrollProgress"></div>
+    </div>
+
+    <nav class="navbar">
+        <div class="nav-content">
+            <div class="logo">Vishal Kumar Sharma</div>
+            <ul class="nav-links">
+                <li><a onclick="scrollToSection('hero')">Home</a></li>
+                <li><a onclick="scrollToSection('about')">About</a></li>
+                <li><a onclick="scrollToSection('skills')">Skills</a></li>
+                <li><a onclick="scrollToSection('experience')">Experience</a></li>
+                <li><a onclick="scrollToSection('education')">Education</a></li>
+                <li><a onclick="scrollToSection('projects')">Projects</a></li>
+                <li><a onclick="scrollToSection('contact')">Contact</a></li>
+            </ul>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <section id="hero" class="hero">
+        <div class="floating-icons">
+            <i class="fab fa-python floating-icon" style="top: 20%; left: 10%; animation-delay: 0s;"></i>
+            <i class="fab fa-r-project floating-icon" style="top: 60%; left: 85%; animation-delay: 1s;"></i>
+            <i class="fas fa-chart-bar floating-icon" style="top: 80%; left: 15%; animation-delay: 2s;"></i>
+            <i class="fas fa-brain floating-icon" style="top: 30%; left: 80%; animation-delay: 3s;"></i>
+            <i class="fas fa-database floating-icon" style="top: 70%; left: 10%; animation-delay: 4s;"></i>
+            <i class="fas fa-cogs floating-icon" style="top: 20%; left: 75%; animation-delay: 5s;"></i>
+        </div>
+        <div class="hero-content">
+            <h1>Vishal Kumar Sharma</h1>
+            <p class="subtitle">Application Manager @ Legal & General</p>
+            <p class="description">Highly analytical scientist and strategist with 9 years of cross-industry experience in Analytics, Machine Learning, and Predictive Modeling. Currently pursuing PhD in Computer Science while driving business value through data-driven solutions.</p>
+            <div class="cta-buttons">
+                <a href="#contact" class="btn btn-primary" onclick="scrollToSection('contact')">Get In Touch</a>
+                <a href="https://vishalsharma.shinyapps.io/VishalSharmaCV/" target="_blank" class="btn btn-secondary">View Online CV</a>
+            </div>
+        </div>
+    </section>
+
+    <div class="stats-section">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <span class="stat-number" data-target="9">0</span>
+                <div class="stat-label">Years Experience</div>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" data-target="15">0</span>
+                <div class="stat-label">Major Projects</div>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" data-target="4">0</span>
+                <div class="stat-label">Industries Served</div>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" data-target="150">0</span>
+                <div class="stat-label">Million £ Portfolios</div>
+            </div>
+        </div>
+    </div>
+
+    <section id="about" class="section">
+        <h2 class="section-title">About Me</h2>
+        <div style="text-align: center; max-width: 800px; margin: 0 auto; font-size: 1.1rem; line-height: 1.8; color: #b0bec5;">
+            <p>I am a passionate data scientist and analytics developer with a unique blend of academic rigor and industry expertise. Currently working at Legal & General Insurance, I specialize in building sophisticated analytics solutions that drive real business impact.</p>
+            <br>
+            <p>My journey spans across Fortune 500 companies in insurance, banking, real estate, and manufacturing sectors. I excel in translating complex data challenges into actionable insights through advanced machine learning, predictive modeling, and interactive visualization platforms.</p>
+        </div>
+    </section>
+
+    <section id="skills" class="section">
+        <h2 class="section-title">Technical Expertise</h2>
+        <div class="skills-grid">
+            <div class="skill-category">
+                <h3><i class="fas fa-code"></i> Programming Languages</h3>
+                <div class="tech-logos">
+                    <span class="tech-logo"><i class="fab fa-r-project"></i> R Programming</span>
+                    <span class="tech-logo"><i class="fab fa-python"></i> Python</span>
+                    <span class="tech-logo"><i class="fab fa-js"></i> JavaScript</span>
+                    <span class="tech-logo"><i class="fas fa-database"></i> SQL</span>
+                    <span class="tech-logo"><i class="fab fa-java"></i> Java</span>
+                    <span class="tech-logo"><i class="fas fa-terminal"></i> Shell Scripting</span>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3><i class="fas fa-chart-line"></i> Analytics & ML</h3>
+                <div class="tech-logos">
+                    <span class="tech-logo"><i class="fas fa-brain"></i> Machine Learning</span>
+                    <span class="tech-logo"><i class="fas fa-project-diagram"></i> Deep Learning</span>
+                    <span class="tech-logo"><i class="fas fa-chart-bar"></i> Statistical Modeling</span>
+                    <span class="tech-logo"><i class="fas fa-search"></i> NLP</span>
+                    <span class="tech-logo"><i class="fas fa-eye"></i> Computer Vision</span>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3><i class="fas fa-tools"></i> Tools & Platforms</h3>
+                <div class="tech-logos">
+                    <span class="tech-logo"><i class="fas fa-chart-pie"></i> R Shiny</span>
+                    <span class="tech-logo"><i class="fas fa-chart-area"></i> Tableau</span>
+                    <span class="tech-logo"><i class="fas fa-cube"></i> Power BI</span>
+                    <span class="tech-logo"><i class="fab fa-aws"></i> AWS</span>
+                    <span class="tech-logo"><i class="fas fa-snowflake"></i> Snowflake</span>
+                    <span class="tech-logo"><i class="fab fa-docker"></i> TensorFlow</span>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3><i class="fas fa-chart-line"></i> Visualization</h3>
+                <div class="tech-logos">
+                    <span class="tech-logo"><i class="fas fa-chart-bar"></i> D3.js</span>
+                    <span class="tech-logo"><i class="fas fa-chart-line"></i> ggplot</span>
+                    <span class="tech-logo"><i class="fas fa-chart-area"></i> Plotly</span>
+                    <span class="tech-logo"><i class="fas fa-map"></i> Leaflet</span>
+                    <span class="tech-logo"><i class="fas fa-chart-pie"></i> Highcharts</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="section">
+        <h2 class="section-title">Professional Experience</h2>
+        <div class="experience-timeline">
+            <div class="timeline-line"></div>
+            
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="job-title">Application Manager</div>
+                <div class="company">Legal & General Insurance</div>
+                <div class="duration">April 2023 - Present</div>
+                <p>Leading development of risk accumulation analytics and GIP claims prediction systems. Built interactive Shiny applications for underwriters with advanced mapping and visualization capabilities using leaflet, plotly, and highcharts.</p>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="job-title">Senior Analyst – Pricing/R Shiny Developer</div>
+                <div class="company">Equipped Analytical Intelligence</div>
+                <div class="duration">July 2021 - April 2023</div>
+                <p>Specialized in portfolio pricing for investment opportunities up to £150 million. Developed predictive models for loan defaults, collections, and prepayments. Created comprehensive analytical products and led dashboard optimization initiatives.</p>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="job-title">Data Scientist</div>
+                <div class="company">CBRE</div>
+                <div class="duration">January 2020 - June 2021</div>
+                <p>Built Portfolio Transformation Calculator for COVID-19 impact analysis. Developed CBRE Pathfinder dashboard and location intelligence systems. Created automated EDA tools and client portfolio dashboards for Fortune 500 companies.</p>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="job-title">Junior Data Scientist</div>
+                <div class="company">Sopra Banking Software</div>
+                <div class="duration">July 2015 - January 2020</div>
+                <p>Worked on banking platform development for NS&I Bank UK. Built predictive models for customer churn and subscription likelihood. Developed house price prediction models and customer segmentation systems using advanced ML techniques.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="education" class="section">
+        <h2 class="section-title">Education</h2>
+        
+        <div class="education-card">
+            <div class="degree">Ph.D. in Computer Science and Engineering</div>
+            <div class="company">Amity University, Noida (2021-2025)</div>
+            <p><strong>Thesis:</strong> Detecting DeepFake Videos Based on Spatio-temporal Features & Audio-Visual Modalities Using Artificial Intelligence</p>
+        </div>
+
+        <div class="education-card">
+            <div class="degree">Masters in Software Systems (Data Science Specialization)</div>
+            <div class="company">BITS Pilani (2017-2020)</div>
+            <p><strong>CGPA:</strong> 8.47/10</p>
+        </div>
+
+        <div class="education-card">
+            <div class="degree">Bachelor of Technology - Computer Science & Engineering</div>
+            <div class="company">Inderprastha Engineering College, Ghaziabad (2011-2015)</div>
+            <p><strong>Percentage:</strong> 72.9%</p>
+        </div>
+    </section>
+
+    <section id="projects" class="section">
+        <h2 class="section-title">Featured Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-title">Accumulation of Risk Analytics</div>
+                <div class="project-domain">Insurance Analytics</div>
+                <p>Advanced Shiny application for underwriters to calculate risk accumulation with interactive mapping using leaflet and comprehensive visualizations.</p>
+            </div>
+            <div class="project-card">
+                <div class="project-title">GIP Claims Prediction</div>
+                <div class="project-domain">Machine Learning</div>
+                <p>Binary classification model to predict claim payment likelihood using Dataiku and R, with comprehensive EDA and stakeholder reporting.</p>
+            </div>
+            <div class="project-card">
+                <div class="project-title">Portfolio Pricing Engine</div>
+                <div class="project-domain">Financial Analytics</div>
+                <p>Sophisticated pricing models for investment opportunities up to £150M, including NPL and securitisation pricing with risk-return analysis.</p>
+            </div>
+            <div class="project-card">
+                <div class="project-title">CBRE Pathfinder</div>
+                <div class="project-domain">Real Estate Tech</div>
+                <p>ML-powered dashboard for property management decisions with Python-R integration via Flask APIs and AWS deployment.</p>
+            </div>
+            <div class="project-card">
+                <div class="project-title">Location Intelligence System</div>
+                <div class="project-domain">GeoSpatial Analytics</div>
+                <p>Advanced mapping system using Google Maps API for address standardization and location intelligence with custom variable mapping.</p>
+            </div>
+            <div class="project-card">
+                <div class="project-title">Banking Churn Prediction</div>
+                <div class="project-domain">Banking Analytics</div>
+                <p>End-to-end churn prediction model for NS&I Bank with interactive R Shiny visualizations and automated campaign analysis.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="achievements" class="section">
+        <h2 class="section-title">Achievements & Recognition</h2>
+        <div class="achievements">
+            <div class="achievement-card">
+                <div class="achievement-icon"><i class="fas fa-trophy"></i></div>
+                <h3>Best Shiny App Award</h3>
+                <p>Won first prize for best Shiny application within organization</p>
+            </div>
+            <div class="achievement-card">
+                <div class="achievement-icon"><i class="fas fa-star"></i></div>
+                <h3>Customer Delight Award</h3>
+                <p>Recognized for consistency and commitment towards quality deliveries</p>
+            </div>
+            <div class="achievement-card">
+                <div class="achievement-icon"><i class="fas fa-graduation-cap"></i></div>
+                <h3>PhD Researcher</h3>
+                <p>Pursuing PhD in Computer Science focusing on DeepFake detection using AI</p>
+            </div>
+            <div class="achievement-card">
+                <div class="achievement-icon"><i class="fas fa-building"></i></div>
+                <h3>Fortune 500 Experience</h3>
+                <p>Extensive experience working with leading global corporations</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section">
+        <h2 class="section-title">Let's Connect</h2>
+        <div class="contact-grid">
+            <div class="contact-item">
+                <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                <h3>Email</h3>
+                <a href="mailto:vishalsharma3003@gmail.com" style="color: #64ffda; text-decoration: none;">vishalsharma3003@gmail.com</a>
+            </div>
+            <div class="contact-item">
+                <div class="contact-icon"><i class="fab fa-linkedin"></i></div>
+                <h3>LinkedIn</h3>
+                <a href="https://linkedin.com/in/vishalsharma3003/" target="_blank" style="color: #64ffda; text-decoration: none;">linkedin.com/in/vishalsharma3003</a>
+            </div>
+            <div class="contact-item">
+                <div class="contact-icon"><i class="fab fa-github"></i></div>
+                <h3>GitHub</h3>
+                <a href="http://github.com/vishalsharma3003/" target="_blank" style="color: #64ffda; text-decoration: none;">github.com/vishalsharma3003</a>
+            </div>
+            <div class="contact-item">
+                <div class="contact-icon"><i class="fab fa-stack-overflow"></i></div>
+                <h3>Stack Overflow</h3>
+                <a href="https://stackoverflow.com/users/12262111/vishal-sharma" target="_blank" style="color: #64ffda; text-decoration: none;">stackoverflow.com/users/12262111</a>
+            </div>
+            <div class="contact-item">
+                <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                <h3>Location</h3>
+                <p>Brighton, United Kingdom</p>
+            </div>
+            <div class="contact-item">
+                <div class="contact-icon"><i class="fas fa-globe"></i></div>
+                <h3>Online CV</h3>
+                <a href="https://vishalsharma.shinyapps.io/VishalSharmaCV/" target="_blank" style="color: #64ffda; text-decoration: none;">Interactive Portfolio</a>
+            </div>
+        </div>
+    </section>
+
+    <footer style="background: rgba(0,0,0,0.3); padding: 2rem; text-align: center; color: #90a4ae;">
+        <p>&copy; 2025 Vishal Kumar Sharma. Built with passion for data and innovation.</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            element.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Scroll progress indicator
+        window.addEventListener('scroll', () => {
+            const scrolled = (window.pageYOffset / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+            document.getElementById('scrollProgress').style.width = scrolled + '%';
+        });
+
+        // Animated counter for stats
+        function animateCounter(element, target, duration = 2000) {
+            let start = 0;
+            const increment = target / (duration / 16);
+            const timer = setInterval(() => {
+                start += increment;
+                if (start >= target) {
+                    element.textContent = target;
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(start);
+                }
+            }, 16);
+        }
+
+        // Trigger counter animation when stats section comes into view
+        const observerOptions = {
+            threshold: 0.5,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const statNumbers = entry.target.querySelectorAll('.stat-number');
+                    statNumbers.forEach(stat => {
+                        const target = parseInt(stat.getAttribute('data-target'));
+                        animateCounter(stat, target);
+                    });
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Observe stats section
+        const statsSection = document.querySelector('.stats-section');
+        if (statsSection) {
+            observer.observe(statsSection);
+        }
+
+        // Floating particles effect
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + 'vw';
+            particle.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            particle.style.opacity = Math.random() * 0.5 + 0.2;
+            document.body.appendChild(particle);
+
+            const animationDuration = parseFloat(particle.style.animationDuration) * 1000;
+            
+            particle.animate([
+                { transform: 'translateY(100vh) rotate(0deg)', opacity: 0 },
+                { transform: 'translateY(-10px) rotate(360deg)', opacity: 1 }
+            ], {
+                duration: animationDuration,
+                easing: 'linear'
+            });
+
+            setTimeout(() => {
+                particle.remove();
+            }, animationDuration);
+        }
+
+        // Create particles periodically
+        setInterval(createParticle, 2000);
+
+        // Add hover effects to skill categories
+        document.querySelectorAll('.skill-category').forEach(category => {
+            category.addEventListener('mouseenter', () => {
+                category.style.background = 'rgba(100, 255, 218, 0.1)';
+            });
+            category.addEventListener('mouseleave', () => {
+                category.style.background = 'rgba(255, 255, 255, 0.05)';
+            });
+        });
+
+        // Add click animation to project cards
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('click', () => {
+                card.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    card.style.transform = 'translateY(-5px)';
+                }, 150);
+            });
+        });
+
+        // Dynamic typing effect for subtitle
+        const subtitle = document.querySelector('.subtitle');
+        const titles = [
+            'Data Analytics Developer @ Legal & General',
+            'Machine Learning Expert',
+            'PhD Researcher in Computer Science',
+            'Python & R Programming Specialist',
+            'Data Visualization Expert'
+        ];
+        let currentTitle = 0;
+
+        function typeTitle() {
+            const title = titles[currentTitle];
+            let index = 0;
+            subtitle.textContent = '';
+            
+            const typeInterval = setInterval(() => {
+                subtitle.textContent += title[index];
+                index++;
+                if (index === title.length) {
+                    clearInterval(typeInterval);
+                    setTimeout(() => {
+                        currentTitle = (currentTitle + 1) % titles.length;
+                        setTimeout(typeTitle, 1000);
+                    }, 3000);
+                }
+            }, 100);
+        }
+
+        // Start typing effect after initial load
+        setTimeout(typeTitle, 2000);
+
+        // Add parallax effect to floating icons
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const icons = document.querySelectorAll('.floating-icon');
+            icons.forEach((icon, index) => {
+                const speed = 0.5 + (index * 0.1);
+                icon.style.transform = `translateY(${scrolled * speed}px) rotate(${scrolled * 0.1}deg)`;
+            });
+        });
+
+        // Add intersection observer for fade-in animations
+        const fadeElements = document.querySelectorAll('.section');
+        const fadeObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        fadeElements.forEach(element => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(30px)';
+            element.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            fadeObserver.observe(element);
+        });
+    </script>
+</body>
+</html>
