@@ -484,6 +484,75 @@
             color: #b0bec5;
             margin-top: 0.5rem;
         }
+		
+		.publication-item {
+			background: rgba(255, 255, 255, 0.05);
+			padding: 2rem;
+			border-radius: 15px;
+			border: 1px solid rgba(255, 255, 255, 0.1);
+			border-left: 4px solid #64ffda;
+			transition: all 0.3s ease;
+			margin-bottom: 2rem;
+		}
+		
+		.publication-item:hover {
+			transform: translateY(-5px);
+			border-color: #64ffda;
+			background: rgba(100, 255, 218, 0.08);
+		}
+		
+		.pub-title {
+			color: #64ffda;
+			font-size: 1.3rem;
+			font-weight: bold;
+			margin-bottom: 0.8rem;
+			line-height: 1.4;
+		}
+		
+		.pub-publisher {
+			color: #00bcd4;
+			font-size: 0.95rem;
+			font-weight: 500;
+			margin-bottom: 1rem;
+			display: flex;
+			align-items: center;
+			gap: 0.5rem;
+		}
+		
+		.pub-abstract {
+			color: #b0bec5;
+			line-height: 1.7;
+			margin-bottom: 1.5rem;
+			text-align: justify;
+		}
+		
+		.pub-links {
+			display: flex;
+			gap: 1rem;
+			flex-wrap: wrap;
+		}
+		
+		.pub-link-btn {
+			display: inline-flex;
+			align-items: center;
+			gap: 0.5rem;
+			padding: 0.6rem 1.2rem;
+			background: rgba(100, 255, 218, 0.1);
+			border: 1px solid #64ffda;
+			border-radius: 25px;
+			color: #64ffda;
+			text-decoration: none;
+			font-size: 0.9rem;
+			font-weight: 500;
+			transition: all 0.3s ease;
+		}
+		
+		.pub-link-btn:hover {
+			background: #64ffda;
+			color: #0f0f23;
+			transform: translateY(-2px);
+			box-shadow: 0 5px 15px rgba(100, 255, 218, 0.3);
+		}
     </style>
 </head>
 <body>
@@ -501,6 +570,8 @@
                 <li><a onclick="scrollToSection('experience')">Experience</a></li>
                 <li><a onclick="scrollToSection('education')">Education</a></li>
                 <li><a onclick="scrollToSection('projects')">Projects</a></li>
+                <li><a onclick="scrollToSection('achievements')">Acheivements</a></li>
+                <li><a onclick="scrollToSection('publications')">Publications</a></li>
                 <li><a onclick="scrollToSection('contact')">Contact</a></li>
             </ul>
             <div class="mobile-menu">
@@ -521,10 +592,13 @@
         <div class="hero-content">
             <h1>Vishal Kumar Sharma</h1>
             <p class="subtitle">Application Manager @ Legal & General</p>
-            <p class="description">Highly analytical scientist and strategist with 9 years of cross-industry experience in Analytics, Machine Learning, and Predictive Modeling. Currently pursuing PhD in Computer Science while driving business value through data-driven solutions.</p>
+            <p class="description">Highly analytical scientist and strategist with 11 years of cross-industry experience in Analytics, Machine Learning, and Predictive Modeling. Currently pursuing PhD in Computer Science while driving business value through data-driven solutions.</p>
             <div class="cta-buttons">
                 <a href="#contact" class="btn btn-primary" onclick="scrollToSection('contact')">Get In Touch</a>
                 <a href="https://vishalsharma.shinyapps.io/VishalSharmaCV/" target="_blank" class="btn btn-secondary">View Online CV</a>
+				<a href="pdfs/Vishal_CV.pdf" download="Vishal_Kumar_Sharma_CV.pdf" class="btn btn-secondary">
+					<i class="fas fa-download"></i> Download CV
+				</a>
             </div>
         </div>
     </section>
@@ -532,7 +606,7 @@
     <div class="stats-section">
         <div class="stats-grid">
             <div class="stat-item">
-                <span class="stat-number" data-target="9">0</span>
+                <span class="stat-number" data-target="11">0</span>
                 <div class="stat-label">Years Experience</div>
             </div>
             <div class="stat-item">
@@ -592,6 +666,8 @@
                     <span class="tech-logo"><i class="fab fa-aws"></i> AWS</span>
                     <span class="tech-logo"><i class="fas fa-snowflake"></i> Snowflake</span>
                     <span class="tech-logo"><i class="fab fa-docker"></i> TensorFlow</span>
+					<span class="tech-logo"><i class="fas fa-database"></i> Dataiku</span>
+					<span class="tech-logo"><i class="fas fa-book"></i> Jupyter Notebook</span>
                 </div>
             </div>
             <div class="skill-category">
@@ -729,10 +805,83 @@
             </div>
         </div>
     </section>
+	
+	<section id="publications" class="section">
+		<h2 class="section-title">Publications & Research</h2>
+		
+		<div class="publication-item">
+			<div class="pub-title">Spatio-Temporal Convolutional Neural Networks for Deepfake Detection: An Empirical Study</div>
+			<div class="pub-publisher"><i class="fas fa-book"></i> IEEE Conference Publication, 2024</div>
+			<div class="pub-abstract">
+				As the creation of deepfakes becomes more prevalent and sophisticated, the need for accurate and robust detection methods intensifies. This paper presents a comprehensive empirical study on the efficacy of Spatio-Temporal Convolutional Neural Networks (ST-CNNs) for deepfake detection. It explores how the rich spatio-temporal information contained within video frames can be exploited by ST-CNNs to distinguish between genuine and manipulated content. The study is underpinned by a robust testing framework, wherein a range of deepfake generation techniques are used to evaluate the detection model. It further investigates the effect of various layers and architectural elements on detection performance. The results demonstrate that ST-CNNs, by leveraging spatio-temporal correlations, can offer superior deepfake detection performance compared to the conventional CNN models. This work can guide the development of more efficient and effective deepfake detection strategies by providing empirical insights into the utilization of ST-CNNs.
+			</div>
+			<div class="pub-links">
+				<a href="https://ieeexplore.ieee.org/abstract/document/10420892" target="_blank" class="pub-link-btn">
+					<i class="fas fa-external-link-alt"></i> View Paper
+				</a>
+				<a href="pdfs/ST_CNN_Deepfake_Detection.pdf" download="ST_CNN_Deepfake_Detection.pdf" class="pub-link-btn">
+					<i class="fas fa-file-pdf"></i> Download PDF
+				</a>
+			</div>
+		</div>
+	
+		<div class="publication-item">
+			<div class="pub-title">A systematic literature review on deepfake detection techniques</div>
+			<div class="pub-publisher"><i class="fas fa-book"></i> Multimedia Tools and Applications - Springer, 2024</div>
+			<div class="pub-abstract">
+				Big data analytics, computer vision, and human-level governance are key areas where deep learning has been impactful. However, its advancements have also led to concerns over privacy, democracy, and national security, particularly with the advent of deepfake technology. Deepfakes, a term coined in 2017, primarily involve face-swapping in videos. Initially easy to detect, rapid advancements in machine learning have made deepfakes increasingly realistic and challenging to distinguish from reality. Generative Adversarial Networks (GANs) and other deep learning methods are instrumental in creating deepfakes, leading to the development of applications like Faceapp and Fake App. These technological advancements, while impressive, pose significant risks to individual integrity and societal trust. Recognizing this, the necessity to develop systems capable of instantaneously identifying and assessing the authenticity of digital visual media has become paramount. This study aims to evaluate deepfake detection methods by discussing manipulations, optimizations, and enhancements of existing algorithms. It explores various datasets for image, video, and audio deepfake detection, including performance metrics to gauge detection algorithm effectiveness. Through a comprehensive review, this paper identifies gaps in current research, proposes future research directions, and provides a detailed quantitative and qualitative analysis of existing deepfake detection techniques. By consolidating existing literature and presenting new insights, this study serves as a valuable resource for researchers and practitioners aiming to advance the field of deepfake detection.
+			</div>
+			<div class="pub-links">
+				<a href="https://link.springer.com/article/10.1007/s11042-024-19906-1" target="_blank" class="pub-link-btn">
+					<i class="fas fa-external-link-alt"></i> View Paper
+				</a>
+				<a href="pdfs/Systematic_Literature_Review_Deepfake.pdf" download="Systematic_Literature_Review_Deepfake.pdf" class="pub-link-btn">
+					<i class="fas fa-file-pdf"></i> Download PDF
+				</a>
+			</div>
+		</div>
+	
+		<div class="publication-item">
+			<div class="pub-title">Stronger Together: Crafting Successful Industry–Academia Partnerships</div>
+			<div class="pub-publisher"><i class="fas fa-book"></i> Springer Book Chapter, 2024</div>
+			<div class="pub-abstract">
+				This paper explores the intricate dynamics and potential of collaborations between academic institutions and industries. Recognizing the evolving demands of the 21st-century workplace, this paper investigates how such partnerships can be mutually beneficial while addressing the challenges they often face. Utilizing a mixed methods approach, we combine empirical data, case studies, and theoretical analyses to establish benchmarks for assessing partnership effectiveness. The research highlights the importance of aligning goals, timelines, and ethical considerations to ensure long-term sustainability and equitable resource distribution. We identify key factors that contribute to successful collaborations, including structured communication frameworks, mutual respect, and a balanced approach to benefits and contributions. The paper also critically examines potential conflicts, such as the risk of academic pursuits being overshadowed by commercial interests and the imbalance in resource allocation. Through this comprehensive study, we propose strategies to optimize industry–academia partnerships, ensuring they remain productive, ethical, and beneficial to all stakeholders involved. This work not only contributes to the academic discourse on collaborative models but also serves as a practical guide for institutions and industries seeking to forge effective and sustainable partnerships.
+			</div>
+			<div class="pub-links">
+				<a href="https://link.springer.com/chapter/10.1007/978-981-96-0201-8_51" target="_blank" class="pub-link-btn">
+					<i class="fas fa-external-link-alt"></i> View Paper
+				</a>
+				<a href="pdfs/Industry_Academia_Partnerships.pdf" download="Industry_Academia_Partnerships.pdf" class="pub-link-btn">
+					<i class="fas fa-file-pdf"></i> Download PDF
+				</a>
+			</div>
+		</div>
+	
+		<div class="publication-item">
+			<div class="pub-title">Enhancing Deepfake Detection Through Dynamics of Facial Expressions</div>
+			<div class="pub-publisher"><i class="fas fa-book"></i> IEEE Conference Publication, 2023</div>
+			<div class="pub-abstract">
+				The rapid evolution of deepfake technology poses significant threats to digital security, media integrity, and public trust, necessitating the development of robust detection frameworks. Traditional deepfake detection methods primarily rely on pixel inconsistencies, frequency-domain analysis, or handcrafted features, but these approaches are increasingly vulnerable to advanced generative models that produce high-fidelity manipulations. In this study, we introduce MADDM, a Masked Autoencoder-based deepfake detection model that leverages facial expression dynamics to identify inconsistencies in muscle coordination—an aspect that remains challenging for deepfake generators to replicate accurately. Our model is trained in a self-supervised manner, first learning natural facial expressions from real datasets and then detecting anomalies in synthetic videos by reconstructing masked facial regions. Evaluations on Celeb-DF, DFDC, and FaceForensics++ datasets demonstrate that MADDM significantly outperforms existing detection methods, achieving an average accuracy of 81.1%, with state-of-the-art performance on Celeb-DF (86.3%). Further analysis through intra-dataset and cross-dataset testing confirms the model's superior generalization capabilities. The results highlight the potential of expression-based deepfake detection as a powerful and scalable solution for digital forensics and misinformation control. Future research should explore real-time implementation, transformer-based optimizations, and adversarial training strategies to enhance detection efficiency against evolving deepfake techniques.
+			</div>
+			<div class="pub-links">
+				<a href="https://ieeexplore.ieee.org/abstract/document/11085942" target="_blank" class="pub-link-btn">
+					<i class="fas fa-external-link-alt"></i> View Paper
+				</a>
+				<a href="pdfs/Facial_Expressions_Deepfake_Detection.pdf" download="Facial_Expressions_Deepfake_Detection.pdf" class="pub-link-btn">
+					<i class="fas fa-file-pdf"></i> Download PDF
+				</a>
+			</div>
+		</div>
+	</section>
 
     <section id="contact" class="section">
         <h2 class="section-title">Let's Connect</h2>
         <div class="contact-grid">
+			<div class="contact-item">
+				<div class="contact-icon"><i class="fas fa-phone"></i></div>
+				<h3>Phone</h3>
+				<a href="tel:+447519686179" style="color: #64ffda; text-decoration: none;">+44-7519686179</a>
+			</div>
             <div class="contact-item">
                 <div class="contact-icon"><i class="fas fa-envelope"></i></div>
                 <h3>Email</h3>
