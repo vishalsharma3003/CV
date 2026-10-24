@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vishal Kumar Sharma - Application Manager</title>
+    <meta name="description" content="Vishal Kumar Sharma — Application Manager at Legal & General, PhD researcher in multimodal deepfake detection, and author of Prompt Engineering for Production Systems.">
+    <link rel="icon" href="assets/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+    <meta name="theme-color" content="#0f0f23">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
         * {
@@ -39,16 +44,33 @@
         }
 
         .logo {
-            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .logo img {
+            height: 44px;
+            width: auto;
+            display: block;
+        }
+
+        .logo span {
+            font-size: 1.35rem;
             font-weight: bold;
-            background: linear-gradient(45deg, #64ffda, #00bcd4);
+            letter-spacing: 0.02em;
+            background: linear-gradient(45deg, #f7de8c, #c4963e);
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
+            white-space: nowrap;
         }
 
         .nav-links {
             display: flex;
-            gap: 2rem;
+            gap: 1.6rem;
             list-style: none;
         }
 
@@ -64,7 +86,8 @@
         }
 
         .hero {
-            height: 100vh;
+            min-height: 100vh;
+            padding: 6rem 1.5rem 3rem;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -82,11 +105,38 @@
             animation: fadeInUp 1s ease-out;
         }
 
+        .hero-photo {
+            width: 168px;
+            height: 168px;
+            border-radius: 50%;
+            object-fit: cover;
+            display: block;
+            margin: 0 auto 1.5rem;
+            padding: 4px;
+            background: linear-gradient(135deg, #f7de8c, #c4963e 45%, #64ffda);
+            box-shadow: 0 10px 40px rgba(100, 255, 218, 0.18), 0 0 0 6px rgba(15, 15, 35, 0.9);
+            animation: fadeInUp 1s ease-out;
+        }
+
         .hero-content .subtitle {
             font-size: 1.5rem;
             color: #b0bec5;
-            margin-bottom: 2rem;
+            margin-bottom: 0.5rem;
             animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .hero-content .running-title {
+            font-size: 1.15rem;
+            color: #64ffda;
+            min-height: 1.6em;
+            margin-bottom: 1.75rem;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .running-title::after {
+            content: '|';
+            margin-left: 2px;
+            animation: pulse 1s steps(1) infinite;
         }
 
         .hero-content .description {
@@ -392,17 +442,207 @@
             color: #64ffda;
             font-size: 1.5rem;
             cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0.5rem;
+            width: 44px;
+            height: 44px;
+            position: relative;
+        }
+
+        .mobile-menu .bar {
+            position: absolute;
+            left: 10px;
+            width: 24px;
+            height: 2px;
+            border-radius: 2px;
+            background: #64ffda;
+            transition: transform 0.25s ease, opacity 0.2s ease, top 0.25s ease;
+        }
+
+        .mobile-menu .bar:nth-child(1) { top: 14px; }
+        .mobile-menu .bar:nth-child(2) { top: 21px; }
+        .mobile-menu .bar:nth-child(3) { top: 28px; }
+        .mobile-menu.is-open .bar:nth-child(1) { top: 21px; transform: rotate(45deg); }
+        .mobile-menu.is-open .bar:nth-child(2) { opacity: 0; }
+        .mobile-menu.is-open .bar:nth-child(3) { top: 21px; transform: rotate(-45deg); }
+
+        .nav-content {
+            gap: 2rem;
+        }
+
+        @media (max-width: 1240px) and (min-width: 769px) {
+            .nav-links {
+                gap: 1.25rem;
+                font-size: 0.95rem;
+            }
+            .logo span {
+                display: none;
+            }
+        }
+
+        section {
+            scroll-margin-top: 80px;
+        }
+
+        /* Keep floating particles out of the document flow so they never add blank space below the footer */
+        .particle {
+            position: fixed;
+            top: 0;
+            z-index: 0;
+        }
+
+        footer.site-footer {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 2.5rem 2rem;
+            text-align: center;
+            color: #90a4ae;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        footer.site-footer img {
+            width: 150px;
+            height: auto;
+            display: block;
+            margin: 0 auto 1rem;
+        }
+
+        .book-card {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 2.5rem;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-left: 4px solid #f7de8c;
+            border-radius: 15px;
+            padding: 2.5rem;
+        }
+
+        .book-cover {
+            aspect-ratio: 2 / 3;
+            border-radius: 6px 12px 12px 6px;
+            background: linear-gradient(160deg, #1d2b53 0%, #0f0f23 70%);
+            border: 1px solid rgba(247, 222, 140, 0.35);
+            box-shadow: -6px 0 0 rgba(247, 222, 140, 0.25) inset, 0 15px 35px rgba(0, 0, 0, 0.45);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 1.25rem 1rem;
+            text-align: left;
+        }
+
+        .book-cover .bc-title {
+            font-size: 1.25rem;
+            font-weight: 800;
+            line-height: 1.15;
+            color: #f7de8c;
+            letter-spacing: 0.02em;
+        }
+
+        .book-cover .bc-sub {
+            font-size: 0.8rem;
+            color: #64ffda;
+            margin-top: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .book-cover .bc-author {
+            font-size: 0.75rem;
+            color: #b0bec5;
+            border-top: 1px solid rgba(247, 222, 140, 0.3);
+            padding-top: 0.6rem;
+        }
+
+        .book-title {
+            color: #f7de8c;
+            font-size: 1.6rem;
+            font-weight: bold;
+            line-height: 1.3;
+            margin-bottom: 0.4rem;
+        }
+
+        .book-subtitle {
+            color: #00bcd4;
+            font-size: 1.05rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .book-body p {
+            color: #b0bec5;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .btn-amazon {
+            background: linear-gradient(45deg, #f7de8c, #c4963e);
+            color: #0f0f23;
+            font-weight: bold;
         }
 
         @media (max-width: 768px) {
+            .navbar {
+                padding: 0.75rem 1rem;
+            }
+            .logo span {
+                font-size: 1.1rem;
+            }
+            .logo img {
+                height: 36px;
+            }
             .nav-links {
                 display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                gap: 0;
+                background: rgba(15, 15, 35, 0.98);
+                border-bottom: 1px solid rgba(100, 255, 218, 0.2);
+                padding: 0.5rem 0;
+            }
+            .nav-links.open {
+                display: flex;
+            }
+            .nav-links a {
+                display: block;
+                padding: 0.85rem 1.5rem;
             }
             .mobile-menu {
                 display: block;
             }
             .hero-content h1 {
-                font-size: 2.5rem;
+                font-size: 2.3rem;
+            }
+            .hero-photo {
+                width: 132px;
+                height: 132px;
+            }
+            .hero-content .subtitle {
+                font-size: 1.2rem;
+            }
+            .cta-buttons {
+                flex-wrap: wrap;
+            }
+            .section .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            .book-card {
+                grid-template-columns: 1fr;
+                padding: 1.75rem;
+                gap: 1.75rem;
+            }
+            .book-cover {
+                width: 180px;
+                margin: 0 auto;
+            }
+            .book-cover .bc-title {
+                font-size: 1.05rem;
+            }
+            .book-title {
+                font-size: 1.35rem;
             }
             .timeline-item {
                 margin-left: 2rem;
@@ -562,21 +802,25 @@
 
     <nav class="navbar">
         <div class="nav-content">
-            <div class="logo">Vishal Kumar Sharma</div>
-            <ul class="nav-links">
+            <a class="logo" onclick="scrollToSection('hero')" aria-label="Vishal Kumar Sharma — home">
+                <img src="assets/logo-mark.png" alt="VKS monogram">
+                <span>Vishal Kumar Sharma</span>
+            </a>
+            <ul class="nav-links" id="navLinks">
                 <li><a onclick="scrollToSection('hero')">Home</a></li>
                 <li><a onclick="scrollToSection('about')">About</a></li>
                 <li><a onclick="scrollToSection('skills')">Skills</a></li>
                 <li><a onclick="scrollToSection('experience')">Experience</a></li>
                 <li><a onclick="scrollToSection('education')">Education</a></li>
                 <li><a onclick="scrollToSection('projects')">Projects</a></li>
-                <li><a onclick="scrollToSection('achievements')">Acheivements</a></li>
+                <li><a onclick="scrollToSection('achievements')">Achievements</a></li>
+                <li><a onclick="scrollToSection('book')">Book</a></li>
                 <li><a onclick="scrollToSection('publications')">Publications</a></li>
                 <li><a onclick="scrollToSection('contact')">Contact</a></li>
             </ul>
-            <div class="mobile-menu">
-                <i class="fas fa-bars"></i>
-            </div>
+            <button class="mobile-menu" id="mobileMenuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+                <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+            </button>
         </div>
     </nav>
 
@@ -590,8 +834,10 @@
             <i class="fas fa-cogs floating-icon" style="top: 20%; left: 75%; animation-delay: 5s;"></i>
         </div>
         <div class="hero-content">
+            <img class="hero-photo" src="assets/profile.jpg" alt="Portrait of Vishal Kumar Sharma" width="168" height="168">
             <h1>Vishal Kumar Sharma</h1>
             <p class="subtitle">Application Manager @ Legal & General</p>
+            <p class="running-title" aria-live="polite"></p>
             <p class="description">Highly analytical scientist and strategist with 11 years of cross-industry experience in Analytics, Machine Learning, and Predictive Modeling. Currently pursuing PhD in Computer Science while driving business value through data-driven solutions.</p>
             <div class="cta-buttons">
                 <a href="#contact" class="btn btn-primary" onclick="scrollToSection('contact')">Get In Touch</a>
@@ -727,7 +973,7 @@
         
         <div class="education-card">
             <div class="degree">Ph.D. in Computer Science and Engineering</div>
-            <div class="company">Amity University, Noida (2021-2025)</div>
+            <div class="company">Amity University, Noida (2021-2026)</div>
             <p><strong>Thesis:</strong> Detecting DeepFake Videos Based on Spatio-temporal Features & Audio-Visual Modalities Using Artificial Intelligence</p>
         </div>
 
@@ -806,25 +1052,78 @@
         </div>
     </section>
 	
+	<section id="book" class="section">
+		<h2 class="section-title">Book</h2>
+		<div class="book-card">
+			<div class="book-cover" aria-hidden="true">
+				<div>
+					<div class="bc-title">PROMPT ENGINEERING FOR PRODUCTION SYSTEMS</div>
+					<div class="bc-sub">Reliable &middot; Testable &middot; Maintainable</div>
+				</div>
+				<div class="bc-author">Vishal Kumar Sharma<br>First Edition, 2026</div>
+			</div>
+			<div class="book-body">
+				<div class="book-title">Prompt Engineering for Production Systems</div>
+				<div class="book-subtitle">Building Reliable, Testable, and Maintainable LLM Applications &middot; First Edition, 2026</div>
+				<p>A practical guide for engineers and ML practitioners who need LLM applications to hold up in production. Each chapter opens with a real failure and works through prompt architecture and versioning, evaluation and regression testing, cost and latency, reliability and observability, multi-step agents, prompt-injection security, and governance &mdash; with runnable, model-agnostic Python throughout.</p>
+				<a href="https://www.amazon.co.uk/dp/B0HHY145SD" target="_blank" rel="noopener" class="btn btn-amazon">
+					<i class="fab fa-amazon"></i> Buy on Amazon
+				</a>
+			</div>
+		</div>
+	</section>
+
 	<section id="publications" class="section">
 		<h2 class="section-title">Publications & Research</h2>
 		
 		<div class="publication-item">
-			<div class="pub-title">Spatio-Temporal Convolutional Neural Networks for Deepfake Detection: An Empirical Study</div>
-			<div class="pub-publisher"><i class="fas fa-book"></i> IEEE Conference Publication, 2024</div>
+			<div class="pub-title">Point-based Spatio-temporal Convolution and Dual-channel Attention for Lightweight Multimodal Deepfake Detection</div>
+			<div class="pub-publisher"><i class="fas fa-book"></i> Iranian Journal of Science and Technology, Transactions of Electrical Engineering - Springer, 2026</div>
 			<div class="pub-abstract">
-				As the creation of deepfakes becomes more prevalent and sophisticated, the need for accurate and robust detection methods intensifies. This paper presents a comprehensive empirical study on the efficacy of Spatio-Temporal Convolutional Neural Networks (ST-CNNs) for deepfake detection. It explores how the rich spatio-temporal information contained within video frames can be exploited by ST-CNNs to distinguish between genuine and manipulated content. The study is underpinned by a robust testing framework, wherein a range of deepfake generation techniques are used to evaluate the detection model. It further investigates the effect of various layers and architectural elements on detection performance. The results demonstrate that ST-CNNs, by leveraging spatio-temporal correlations, can offer superior deepfake detection performance compared to the conventional CNN models. This work can guide the development of more efficient and effective deepfake detection strategies by providing empirical insights into the utilization of ST-CNNs.
+				The rapid advancement of generative models has led to the widespread proliferation of highly realistic deepfake videos, posing serious threats to digital media integrity, public trust, and online security. Although recent deepfake detection methods have achieved high detection accuracy, most rely on computationally intensive architectures that limit their applicability in real-time and resource-constrained deployment scenarios. This creates a critical gap between academic performance and practical usability. This study proposes an efficient multimodal deepfake detection framework that jointly models spatial-temporal visual artifacts and audio-visual correlation inconsistencies while explicitly considering computational efficiency. The proposed method integrates a Fast Point Spatio-Temporal Convolution module for redundancy-aware visual feature extraction, a Dual-Channel Attention mechanism to separately capture intra-modal artifacts and cross-modal inconsistencies, and an attention-guided cross-modal fusion strategy for adaptive multimodal integration. An Efficiency-Aware Multi-Objective Bayesian Optimization framework is employed to tune key hyperparameters by jointly optimizing detection performance, computational complexity, and inference latency. Extensive experiments on FaceForensics++, DFDC, and Celeb-DF datasets demonstrate that the proposed framework achieves state-of-the-art detection performance, attaining up to 98.5% accuracy on FaceForensics++ while maintaining low computational overhead with 14.2 GFLOPs and 28 ms inference latency per video clip. The framework outperforms existing CNN- and transformer-based methods in terms of the accuracy-efficiency trade-off and exhibits strong generalization across datasets. This study demonstrates that robust multimodal deepfake detection can be achieved without sacrificing computational efficiency. By integrating efficient feature extraction, principled multimodal attention, and deployment-aware hyperparameter optimization into a unified framework, the proposed method provides a practical and scalable solution suitable for real-world deepfake detection applications.
 			</div>
 			<div class="pub-links">
-				<a href="https://ieeexplore.ieee.org/abstract/document/10420892" target="_blank" class="pub-link-btn">
+				<a href="https://link.springer.com/article/10.1007/s40998-026-01247-4" target="_blank" rel="noopener" class="pub-link-btn">
 					<i class="fas fa-external-link-alt"></i> View Paper
 				</a>
-				<a href="pdfs/ST_CNN_Deepfake_Detection.pdf" download="ST_CNN_Deepfake_Detection.pdf" class="pub-link-btn">
+				<a href="pdfs/FPDCA_Lightweight_Multimodal_Deepfake_Detection.pdf" download="FPDCA_Lightweight_Multimodal_Deepfake_Detection.pdf" class="pub-link-btn">
 					<i class="fas fa-file-pdf"></i> Download PDF
 				</a>
 			</div>
 		</div>
-	
+		
+		<div class="publication-item">
+			<div class="pub-title">Audio-Visual Fusion for Deepfake Video Detection: A Deep Learning Framework</div>
+			<div class="pub-publisher"><i class="fas fa-book"></i> Springer Conference Paper (ICAAAIML 2023), Lecture Notes in Electrical Engineering, vol. 1464, 2026</div>
+			<div class="pub-abstract">
+				Deepfake technology, enabled by advances in artificial intelligence and deep learning, has grown exponentially, offering unprecedented abilities to synthesize hyper-realistic audio-visual content. However, its malicious misuse poses significant challenges for information verification, thereby demanding robust detection methods. This paper introduces a novel deep learning framework designed for the detection of deepfake videos by leveraging audio-visual fusion techniques. Recognizing the intricate anomalies present separately in audio and visual data, our approach integrates both modalities to achieve heightened accuracy in discerning genuine from manipulated content. We utilize a two-stream convolutional neural network (CNN) that separately analyzes the spectral properties of audio and the subtle facial discrepancies in video before fusing the obtained features. A composite feature vector is formed from the fusion, which is then input to a deep neural network (DNN) classifier. The combined strength of these modalities not only addresses the current vulnerabilities in existing detection methods but also anticipates the evolving sophistication of deepfake technologies. Preliminary results suggest an impressive enhancement in detection performance as compared to single-modality methods. Additionally, the flexibility of our framework allows for potential future integrations with other modalities and data types.
+			</div>
+			<div class="pub-links">
+				<a href="https://link.springer.com/chapter/10.1007/978-981-95-0148-9_10" target="_blank" rel="noopener" class="pub-link-btn">
+					<i class="fas fa-external-link-alt"></i> View Paper
+				</a>
+				<a href="pdfs/AudioVisual_Fusion_Deepfake_Detection.pdf" download="AudioVisual_Fusion_Deepfake_Detection.pdf" class="pub-link-btn">
+					<i class="fas fa-file-pdf"></i> Download PDF
+				</a>
+			</div>
+		</div>
+		
+		<div class="publication-item">
+			<div class="pub-title">Enhancing Deepfake Detection Through Dynamics of Facial Expressions</div>
+			<div class="pub-publisher"><i class="fas fa-book"></i> IEEE Conference Publication (ICICV), 2025</div>
+			<div class="pub-abstract">
+				The rapid evolution of deepfake technology poses significant threats to digital security, media integrity, and public trust, necessitating the development of robust detection frameworks. Traditional deepfake detection methods primarily rely on pixel inconsistencies, frequency-domain analysis, or handcrafted features, but these approaches are increasingly vulnerable to advanced generative models that produce high-fidelity manipulations. In this study, we introduce MADDM, a Masked Autoencoder-based deepfake detection model that leverages facial expression dynamics to identify inconsistencies in muscle coordination—an aspect that remains challenging for deepfake generators to replicate accurately. Our model is trained in a self-supervised manner, first learning natural facial expressions from real datasets and then detecting anomalies in synthetic videos by reconstructing masked facial regions. Evaluations on Celeb-DF, DFDC, and FaceForensics++ datasets demonstrate that MADDM significantly outperforms existing detection methods, achieving an average accuracy of 81.1%, with state-of-the-art performance on Celeb-DF (86.3%). Further analysis through intra-dataset and cross-dataset testing confirms the model's superior generalization capabilities. The results highlight the potential of expression-based deepfake detection as a powerful and scalable solution for digital forensics and misinformation control. Future research should explore real-time implementation, transformer-based optimizations, and adversarial training strategies to enhance detection efficiency against evolving deepfake techniques.
+			</div>
+			<div class="pub-links">
+				<a href="https://ieeexplore.ieee.org/abstract/document/11085942" target="_blank" class="pub-link-btn">
+					<i class="fas fa-external-link-alt"></i> View Paper
+				</a>
+				<a href="pdfs/Facial_Expressions_Deepfake_Detection.pdf" download="Facial_Expressions_Deepfake_Detection.pdf" class="pub-link-btn">
+					<i class="fas fa-file-pdf"></i> Download PDF
+				</a>
+			</div>
+		</div>
+		
 		<div class="publication-item">
 			<div class="pub-title">A systematic literature review on deepfake detection techniques</div>
 			<div class="pub-publisher"><i class="fas fa-book"></i> Multimedia Tools and Applications - Springer, 2024</div>
@@ -840,7 +1139,7 @@
 				</a>
 			</div>
 		</div>
-	
+		
 		<div class="publication-item">
 			<div class="pub-title">Stronger Together: Crafting Successful Industry–Academia Partnerships</div>
 			<div class="pub-publisher"><i class="fas fa-book"></i> Springer Book Chapter, 2024</div>
@@ -851,23 +1150,20 @@
 				<a href="https://link.springer.com/chapter/10.1007/978-981-96-0201-8_51" target="_blank" class="pub-link-btn">
 					<i class="fas fa-external-link-alt"></i> View Paper
 				</a>
-				<a href="pdfs/Industry_Academia_Partnerships.pdf" download="Industry_Academia_Partnerships.pdf" class="pub-link-btn">
-					<i class="fas fa-file-pdf"></i> Download PDF
-				</a>
 			</div>
 		</div>
-	
+		
 		<div class="publication-item">
-			<div class="pub-title">Enhancing Deepfake Detection Through Dynamics of Facial Expressions</div>
-			<div class="pub-publisher"><i class="fas fa-book"></i> IEEE Conference Publication, 2023</div>
+			<div class="pub-title">Spatio-Temporal Convolutional Neural Networks for Deepfake Detection: An Empirical Study</div>
+			<div class="pub-publisher"><i class="fas fa-book"></i> IEEE Conference Publication, 2024</div>
 			<div class="pub-abstract">
-				The rapid evolution of deepfake technology poses significant threats to digital security, media integrity, and public trust, necessitating the development of robust detection frameworks. Traditional deepfake detection methods primarily rely on pixel inconsistencies, frequency-domain analysis, or handcrafted features, but these approaches are increasingly vulnerable to advanced generative models that produce high-fidelity manipulations. In this study, we introduce MADDM, a Masked Autoencoder-based deepfake detection model that leverages facial expression dynamics to identify inconsistencies in muscle coordination—an aspect that remains challenging for deepfake generators to replicate accurately. Our model is trained in a self-supervised manner, first learning natural facial expressions from real datasets and then detecting anomalies in synthetic videos by reconstructing masked facial regions. Evaluations on Celeb-DF, DFDC, and FaceForensics++ datasets demonstrate that MADDM significantly outperforms existing detection methods, achieving an average accuracy of 81.1%, with state-of-the-art performance on Celeb-DF (86.3%). Further analysis through intra-dataset and cross-dataset testing confirms the model's superior generalization capabilities. The results highlight the potential of expression-based deepfake detection as a powerful and scalable solution for digital forensics and misinformation control. Future research should explore real-time implementation, transformer-based optimizations, and adversarial training strategies to enhance detection efficiency against evolving deepfake techniques.
+				As the creation of deepfakes becomes more prevalent and sophisticated, the need for accurate and robust detection methods intensifies. This paper presents a comprehensive empirical study on the efficacy of Spatio-Temporal Convolutional Neural Networks (ST-CNNs) for deepfake detection. It explores how the rich spatio-temporal information contained within video frames can be exploited by ST-CNNs to distinguish between genuine and manipulated content. The study is underpinned by a robust testing framework, wherein a range of deepfake generation techniques are used to evaluate the detection model. It further investigates the effect of various layers and architectural elements on detection performance. The results demonstrate that ST-CNNs, by leveraging spatio-temporal correlations, can offer superior deepfake detection performance compared to the conventional CNN models. This work can guide the development of more efficient and effective deepfake detection strategies by providing empirical insights into the utilization of ST-CNNs.
 			</div>
 			<div class="pub-links">
-				<a href="https://ieeexplore.ieee.org/abstract/document/11085942" target="_blank" class="pub-link-btn">
+				<a href="https://ieeexplore.ieee.org/abstract/document/10420892" target="_blank" class="pub-link-btn">
 					<i class="fas fa-external-link-alt"></i> View Paper
 				</a>
-				<a href="pdfs/Facial_Expressions_Deepfake_Detection.pdf" download="Facial_Expressions_Deepfake_Detection.pdf" class="pub-link-btn">
+				<a href="pdfs/ST_CNN_Deepfake_Detection.pdf" download="ST_CNN_Deepfake_Detection.pdf" class="pub-link-btn">
 					<i class="fas fa-file-pdf"></i> Download PDF
 				</a>
 			</div>
@@ -915,8 +1211,9 @@
         </div>
     </section>
 
-    <footer style="background: rgba(0,0,0,0.3); padding: 2rem; text-align: center; color: #90a4ae;">
-        <p>&copy; 2025 Vishal Kumar Sharma. Built with passion for data and innovation.</p>
+    <footer class="site-footer">
+        <img src="assets/logo-full.png" alt="Vishal Kumar Sharma logo" loading="lazy">
+        <p>&copy; 2026 Vishal Kumar Sharma. Built with passion for data and innovation.</p>
     </footer>
 
     <script>
@@ -924,7 +1221,36 @@
         function scrollToSection(sectionId) {
             const element = document.getElementById(sectionId);
             element.scrollIntoView({ behavior: 'smooth' });
+            closeMobileMenu();
         }
+
+        // Mobile navigation toggle
+        const navLinks = document.getElementById('navLinks');
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+
+        function closeMobileMenu() {
+            if (!navLinks.classList.contains('open')) return;
+            navLinks.classList.remove('open');
+            mobileMenuBtn.setAttribute('aria-expanded', 'false');
+            mobileMenuBtn.setAttribute('aria-label', 'Open menu');
+            mobileMenuBtn.classList.remove('is-open');
+        }
+
+        mobileMenuBtn.addEventListener('click', (event) => {
+            event.stopPropagation();
+            const isOpen = navLinks.classList.toggle('open');
+            mobileMenuBtn.setAttribute('aria-expanded', String(isOpen));
+            mobileMenuBtn.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+            mobileMenuBtn.classList.toggle('is-open', isOpen);
+        });
+
+        document.addEventListener('click', (event) => {
+            if (!event.target.closest('.navbar')) closeMobileMenu();
+        });
+
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) closeMobileMenu();
+        });
 
         // Scroll progress indicator
         window.addEventListener('scroll', () => {
@@ -1020,7 +1346,7 @@
         });
 
         // Dynamic typing effect for subtitle
-        const subtitle = document.querySelector('.subtitle');
+        const subtitle = document.querySelector('.running-title');
         const titles = [
             'Data Analytics Developer @ Legal & General',
             'Machine Learning Expert',
@@ -1049,7 +1375,7 @@
         }
 
         // Start typing effect after initial load
-        setTimeout(typeTitle, 2000);
+        setTimeout(typeTitle, 1000);
 
         // Add parallax effect to floating icons
         window.addEventListener('scroll', () => {
